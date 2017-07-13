@@ -37,7 +37,6 @@ def my_form_post():
         prob_out = str(round(prob[0][0]*100, 1))
     else:
         prob_out = str(round(prob[0][1]*100, 1))
-    print prob_out
     return render_template("index.html", prediction='Predicted: ' + pred[0])
 
 if __name__ == '__main__':
