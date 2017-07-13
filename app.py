@@ -24,7 +24,6 @@ def my_form_post():
     tf_transformer = TfidfTransformer()
     X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
 
-    print('test')
     #unpack and run trained model
     clf = joblib.load('mnnb_model_final.pkl')
     pred = clf.predict(X_train_tfidf)
@@ -34,7 +33,8 @@ def my_form_post():
         prob_out = str(round(prob[0][0]*100, 1))
     else:
         prob_out = str(round(prob[0][1]*100, 1))
-    return render_template("index.html", prediction='Predicted: ' + pred[0])
+    print('test')
+    return render_template("index.html")
 
 if __name__ == '__main__':
     app.run()
