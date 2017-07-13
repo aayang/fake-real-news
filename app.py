@@ -13,10 +13,6 @@ def my_index():
 def my_model():
     return render_template("model.html")
 
-@app.route('/source-code')
-def my_source():
-    return render_template("source-code.html")
-
 #get url, scrape article text, feed into model, return prediction
 @app.route('/', methods=['POST'])
 def my_form_post():
