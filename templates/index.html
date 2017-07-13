@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Fake or Real News?</title>
+		<!--- assets/css/main.css --->
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static',filename='assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static',filename='assets/css/noscript.css ') }}" /></noscript>
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Intro -->
+					<div id="intro">
+						<h1>Fake/Real<br />
+						News Predictor</h1>
+						<p>A model that utilizes Naive Bayes and TFIDF to predict if a news article is fake or real</p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Header -->
+					<header id="header">
+						<a href="index.html" class="logo">Predictor</a>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="/">Predictor</a></li>
+							<li><a href="model">Model</a></li>
+							<li><a href="source-code">Source Code</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Featured Post -->
+							<article class="post featured">
+								<header class="major">
+									<span class="date">By Aaron Yang</span>
+									<h2><a href="#">Predict via text</a></h2>
+									<p>Copy and paste the text content of an article into the box<br>
+									below to predict if it is fake or real</p>
+								</header>
+								<form action="#" method="POST" autocomplete="off">
+									<textarea name="text" id="message" rows="5"></textarea>
+									<ul class="actions">
+										<li>
+											<input type="submit" value="Get Prediction"/>
+										</li>
+									</ul>
+								</form>
+								<h1>{{prediction}}</h1>
+
+								<h3 class="underline">Links to various articles for your convenience</h3>
+								<a href="https://www.washingtonpost.com/politics/trump-i-will-be-very-angry-if-gop-senators-dont-pass-a-health-care-bill/2017/07/12/cad615ae-673b-11e7-a1d7-9a32c91c6f40_story.html?hpid=hp_hp-top-table-main_healthbill-450pm%3Ahomepage%2Fstory">Real News Article #1</a>
+								<span>&nbsp &nbsp &nbsp &nbsp</span>
+								<a href="http://americanpeoplenetwork.com/2017/07/anonymous-hacker-released-emails-hillarys-private-server/">Fake News Article #1</a><br>
+
+								<a href="http://www.cnn.com/2017/07/12/politics/donald-trump-jr-emails-reaction-congress/index.html">Real News Article #2</a>
+								<span>&nbsp &nbsp &nbsp &nbsp</span>
+								<a href="http://civictribune.com/fox-news-host-megyn-kelly-reminds-caucasian-children-how-great-it-is-to-be-white/">Fake News Article #2</a><br>
+
+								<a href="http://abcnews.go.com/US/father-penn-state-hazing-death-victim-expresses-frustration/story?id=48587640">Real News Article #3</a>
+								<span>&nbsp &nbsp &nbsp &nbsp</span>
+								<a href="http://empirenews.net/snapchat-is-secretly-storing-every-picture-thats-taken-and-then-selling-them-on-the-black-market/">Fake News Article #3</a><br>
+
+								</header>
+							</article>
+
+					</div>
+			</div>
+
+		<!-- Scripts -->
+			<script src="{{ url_for('static',filename='assets/js/jquery.min.js') }}"></script>
+			<script src="{{ url_for('static',filename='assets/js/jquery.scrollex.min.js') }}"></script>
+			<script src="{{ url_for('static',filename='assets/js/jquery.scrolly.min.js') }}"></script>
+			<script src="{{ url_for('static',filename='assets/js/skel.min.js') }}"></script>
+			<script src="{{ url_for('static',filename='assets/js/util.js') }}"></script>
+			<script src="{{ url_for('static',filename='assets/js/main.js') }}"></script>
+
+	</body>
+</html>

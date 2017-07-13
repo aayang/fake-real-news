@@ -1,0 +1,56 @@
+import flask
+from flask import Flask, render_template, request
+import json
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.externals import joblib
+
+class FakeRealNews:
+    def on_get(self, req, resp):
+        """Handles GET requests"""
+        quote = {
+            'quote': 'I\'ve always been more interested in the future than in the past.',
+            'author': 'Grace Hopper'
+        }
+
+        resp.body = json.dumps(quote)
+
+app = Flask(__name__)
+
+@app.route('/')
+def my_index():
+    return render_template("index.html")
+
+@app.route('/model')
+def my_model():
+    return render_template("model.html")
+
+@app.route('/source-code')
+def my_source():
+    return render_template("source-code.html")
+
+#get url, scrape article text, feed into model, return prediction
+@app.route('/', methods=['POST'])
+def my_form_post():
+    TXT = request.form['text'] #take url from user input
+
+    #unpack and deploy trained count vectorizer
+    count_vect = joblib.load('vectorizer_final.pkl')
+    X_train_counts = count_vect.fit_transform([TXT])
+    tf_transformer = TfidfTransformer()
+    X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
+
+    #unpack and run trained model
+    clf = joblib.load('mnnb_model_final.pkl')
+    pred = clf.predict(X_train_tfidf)
+    prob = clf.predict_proba(X_train_tfidf)
+    pred_out = pred[0].decode('utf-8')
+    if prob[0][0] >= .5:
+        prob_out = str(round(prob[0][0]*100, 1))
+    else:
+        prob_out = str(round(prob[0][1]*100, 1))
+    print prob_out
+    return render_template("index.html", prediction='Predicted: ' + pred[0])
+
+if __name__ == '__main__':
+    app.run()
