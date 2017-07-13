@@ -24,6 +24,7 @@ def my_form_post():
     tf_transformer = TfidfTransformer()
     X_train_tfidf = tf_transformer.fit_transform(X_train_counts)
 
+    print('test')
     #unpack and run trained model
     clf = joblib.load('mnnb_model_final.pkl')
     pred = clf.predict(X_train_tfidf)
